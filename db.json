@@ -1,0 +1,28 @@
+{
+    "posts":[
+    {
+    "id":"4d4b",
+    "title":"Title1",
+    "description":"lorem is simmple dummy text",
+    "author":"krishna",
+    "image":"https://avatars.mds.yandex.net/i?id=a4d78c15381ee8a9b8d2839420f5eb347d6af32c-5906571-images-thumbs&n=13",
+    "createdAt":"2026-02-06T10:41:07.837z"
+    },
+    {
+         "id":"4db",
+    "title":"Title2",
+    "description":"lorem is simmple dummy text",
+    "author":"krishna",
+    "image":"https://avatars.mds.yandex.net/i?id=1d19d91653e674d3ebc6aed70cab1a4ea569e7f8-4316327-images-thumbs&n=13",
+    "createdAt":"2026-02-06T10:41:07.837z"
+    },
+     {
+         "id":"db",
+    "title":"Title2",
+    "description":"lorem is simmple dummy text",
+    "author":"krishna",
+    "image":"https://avatars.mds.yandex.net/i?id=1d19d91653e674d3ebc6aed70cab1a4ea569e7f8-4316327-images-thumbs&n=13",
+    "createdAt":"2026-02-06T10:41:07.837z"
+    }
+    ]
+}

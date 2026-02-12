@@ -7,7 +7,7 @@ const Navbar = () => {
     <nav className="navbar">
         <div className="navbar-container">
             <div className="navbar-logo">
-                <FaBlog className="nav-icon"/>
+                <FaBlog className="logo-icon"/>
                 <span className="logo-text">BlogPost</span>
             </div>
             <div className="navbar-links">
