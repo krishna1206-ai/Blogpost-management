@@ -75,9 +75,14 @@ function Dashboard() {
                   />
 
                   <div className="post-actions">
-                    <button className="action-btn edit-btn" title="Edit Post">
-                      <MdEdit size={22} color="white" />
-                    </button>
+                   <button
+  className="action-btn edit-btn"
+  title="Edit Post"
+  onClick={() => navigate(`/edit-post/${post.id}`)}
+>
+  <MdEdit size={22} color="white" />
+</button>
+
                     <button
                       className="action-btn delete-btn"
                       title="Delete Post"
