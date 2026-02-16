@@ -21,6 +21,12 @@ const Analytics = () => {
     { name: "Test", posts: 4 },
     { name: "Demo", posts: 2 },
   ];
+  const headers=[
+    {label:'ID',key:'id'},
+    {label:'Title',key:'title'},
+    {label:'Author',key:'author'},
+    {label:'Date',key:'createdAt'}
+  ]
   const COLORS = ["#0088FE", "#00C49F", "#ffbb28", "#ff8042"];
   return (
     <div className="analytics-page">
@@ -80,10 +86,9 @@ const Analytics = () => {
               <thead>
                 
                 <tr>
-                  <th>ID</th>
-                  <th>Title</th>
-                  <th>Author</th>
-                  <th>Date</th>
+                { headers.map((header,index)=>(
+                  <th>{header.labl}</th>
+                 ))}
                 </tr>
               </thead>
               <tbody>
