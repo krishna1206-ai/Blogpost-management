@@ -1,7 +1,7 @@
 import React from 'react'
 import "./Navbar.css";
 import { NavLink } from 'react-router-dom'
-import {FaBlog,FaHome,FaPlusSquare,FaSignOutAlt} from 'react-icons/fa'
+import {FaBlog,FaHome,FaPlusSquare,FaSignOutAlt,FaChartLine } from 'react-icons/fa'
 const Navbar = () => {
   return (
     <nav className="navbar">
@@ -16,6 +16,9 @@ const Navbar = () => {
                 </NavLink>
                  <NavLink to='/create-post' className="nav-item">
                     <FaPlusSquare className="nav-icon"/>Create Post
+                </NavLink>
+                  <NavLink to='/analytics' className="nav-item">
+                    <FaChartLine  className="nav-icon"/>Analysis
                 </NavLink>
             </div>
             <div className="navbar-action">
