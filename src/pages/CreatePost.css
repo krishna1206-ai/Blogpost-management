@@ -18,6 +18,7 @@
 .form-header h1 {
   font-size: 2.5rem;
   font-weight: 800;
+  color: #1e293b;
   margin-bottom: 0.5rem;
   background: linear-gradient(135deg, #6366f1, #a855f7);
   -webkit-background-clip: text;
@@ -31,10 +32,12 @@
 }
 
 .post-form-card {
-  background: #fff;
+  background: #ffffff;
   border-radius: 24px;
   padding: 2.5rem;
-  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05),
+              0 8px 10px -6px rgba(0, 0, 0, 0.05);
+  border: 1px solid #f1f5f9;
 }
 
 .form-group {
@@ -58,22 +61,20 @@
 .input-icon {
   position: absolute;
   left: 1rem;
-  top: 50%;
-  transform: translateY(-50%);
   color: #94a3b8;
-  font-size: 1.1rem;
-  pointer-events: none;
+  font-size: 1.2rem;
 }
 
+/* ===== FIXED INPUT ===== */
 .form-control {
   width: 100%;
-  padding: 0.87rem 1rem 0.87rem 2.75rem;
+  padding: 0.875rem 1rem 0.875rem 2.75rem;
   border: 2px solid #e2e8f0;
   border-radius: 12px;
   font-size: 1rem;
-  color: #1e293b;
-  background-color: #f8fafc;
-  transition: all 0.2s ease;
+  color: #1e293b !important;
+  background-color: #fdfdfd;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .form-control::placeholder {
@@ -87,12 +88,20 @@
   background-color: #fff;
 }
 
+/* Autofill fix */
+input:-webkit-autofill {
+  -webkit-text-fill-color: #1e293b !important;
+  transition: background-color 9999s ease-in-out 0s;
+}
+
+/* ===== TEXTAREA FIX ===== */
 textarea.form-control {
   min-height: 150px;
   resize: vertical;
-  padding-left: 1rem;
+  padding-left: 2.75rem;
 }
 
+/* ===== IMAGE SECTION ===== */
 .image-source-tabs {
   display: flex;
   gap: 1rem;
@@ -108,11 +117,11 @@ textarea.form-control {
   border: none;
   border-radius: 8px;
   font-weight: 600;
-  font-size: 0.87rem;
+  font-size: 0.875rem;
   cursor: pointer;
-  transition: all 0.2s;
   background: transparent;
   color: #64748b;
+  transition: all 0.2s;
 }
 
 .tab-btn.active {
@@ -127,13 +136,13 @@ textarea.form-control {
   padding: 2rem;
   text-align: center;
   cursor: pointer;
-  transition: all 0.2s;
   background: #f8fafc;
+  transition: all 0.2s;
 }
 
 .image-upload-area:hover {
   border-color: #6366f1;
-  background: #eef2ff;
+  background-color: #f5f3f1;
 }
 
 .upload-icon {
@@ -143,10 +152,11 @@ textarea.form-control {
 }
 
 .image-upload-area p {
-  color: #1e293b;
+  color: #000000;
   font-weight: 500;
 }
 
+/* ===== IMAGE PREVIEW ===== */
 .image-preview-container {
   margin-top: 1.5rem;
   position: relative;
@@ -175,8 +185,8 @@ textarea.form-control {
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: all 0.2s ease;
   z-index: 10;
+  transition: all 0.2s ease;
 }
 
 .remove-image-btn:hover {
@@ -184,14 +194,9 @@ textarea.form-control {
   transform: scale(1.1);
 }
 
-.form-actions-row {
-  display: flex;
-  gap: 1rem;
-  margin-top: 2rem;
-}
-
+/* ===== BUTTONS ===== */
 .submit-btn {
-  flex: 2;
+  width: 100%;
   padding: 1rem;
   background: linear-gradient(135deg, #6366f1, #a855f7);
   color: white;
@@ -200,62 +205,71 @@ textarea.form-control {
   font-size: 1.1rem;
   font-weight: 700;
   cursor: pointer;
-  transition: 0.3s;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
+  gap: 10px;
+  transition: all 0.3s;
 }
 
 .submit-btn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 10px 20px -5px rgba(99, 102, 241, 0.4);
+  box-shadow: 0 10px 20px -8px rgba(99, 102, 241, 0.1);
+}
+
+.form-actions-row {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.form-actions-row .submit-btn {
+  flex: 1;
 }
 
 .cancel-btn {
   flex: 1;
   padding: 1rem;
-  background: #f8fafc;
-  color: #475569;
+  background: #fbfafc;
+  color: #475509;
   border: 2px solid #e2e8f0;
   border-radius: 12px;
+  font-size: 1rem;
   font-weight: 700;
   cursor: pointer;
+  transition: all 0.2s;
 }
 
 .cancel-btn:hover {
   background: #f1f5f9;
   color: #1e293b;
+  border-color: #cbd5e1;
 }
 
-.delete-btn {
-  flex: 1;
-  padding: 1rem;
-  background: #ef4444;
-  color: white;
-  border: none;
-  border-radius: 12px;
-  font-weight: 700;
-  cursor: pointer;
+/* ===== ERROR ===== */
+.error {
+  color: red;
+  font-size: 13px;
+  margin-top: 4px;
+  display: block;
 }
 
-.delete-btn:hover {
-  background: #dc2626;
-}
-
+/* ===== RESPONSIVE ===== */
 @media (max-width: 480px) {
   .form-actions-row {
     flex-direction: column;
   }
 }
 
-@media (max-width: 680px) {
+@media (max-width: 640px) {
   .create-post-container {
     margin: 1rem auto;
   }
+
   .post-form-card {
     padding: 1.5rem;
   }
+
   .form-header h1 {
     font-size: 1.8rem;
   }
