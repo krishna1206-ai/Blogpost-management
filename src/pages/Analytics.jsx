@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Navbar from "../component/Navbar";
+import Navbar from "../Component/Navbar";
 import "./Analytics.css";
 import {
   BarChart,
@@ -14,15 +14,13 @@ import {
   Pie,
   Cell,
 } from "recharts";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, NavLink } from "react-router-dom";
 
 const Analytics = () => {
   const [posts, setPosts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const navigate = useNavigate();
   const postsPerPage = 5;
-
-  /* ================== AUTHOR STATS ================== */
   const authorStats = posts.reduce((acc, post) => {
     const author = post.auther || "Unknown";
     acc[author] = (acc[author] || 0) + 1;
@@ -33,8 +31,6 @@ const Analytics = () => {
     name: author,
     posts: authorStats[author],
   }));
-
-  /* ================== PAGINATION ================== */
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
   const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
@@ -43,8 +39,6 @@ const Analytics = () => {
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"];
-
-  /* ================== FETCH DATA ================== */
   useEffect(() => {
     fetch("http://localhost:3000/posts")
       .then((res) => res.json())
@@ -52,10 +46,6 @@ const Analytics = () => {
       .catch((err) => console.error(err));
   }, []);
 
-  /* ================== ACTIONS ================== */
-  const handleEdit = (id) => {
-    navigate(`/create-post/${id}`);
-  };
 
   const handleDelete = async (id) => {
     if (!window.confirm("Are you sure you want to delete this post?")) return;
@@ -76,10 +66,7 @@ const Analytics = () => {
           <h1>Blog Analytics</h1>
           <p>Insights into your blog's performance and activity</p>
         </header>
-
-        {/* ================== CHARTS ================== */}
         <div className="charts-container">
-          {/* BAR CHART */}
           <div className="chart-card">
             <h3>Posts per Author</h3>
             <ResponsiveContainer width="100%" height={300}>
@@ -93,8 +80,6 @@ const Analytics = () => {
               </BarChart>
             </ResponsiveContainer>
           </div>
-
-          {/* PIE CHART */}
           <div className="chart-card">
             <h3>Distribution</h3>
             <ResponsiveContainer width="100%" height={300}>
@@ -123,7 +108,6 @@ const Analytics = () => {
           </div>
         </div>
 
-        {/* ================== TABLE ================== */}
         <div className="posts-table-section">
           <h3>All Posts</h3>
 
@@ -152,13 +136,12 @@ const Analytics = () => {
                           : "-"}
                       </td>
                       <td className="action-buttons">
-                        <button
-                          className="edit-btn"
-                          onClick={() => handleEdit(post.id)}
-                          title="Edit"
-                        >
-                          ✏
-                        </button>
+                        <NavLink to={`/edit-post/${post.id}`}>
+                          <button className="edit-btn" title="Edit">
+                            ✏
+                          </button>
+                        </NavLink>
+
                         <button
                           className="delete-btn"
                           onClick={() => handleDelete(post.id)}

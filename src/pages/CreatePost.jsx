@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import Navbar from "../component/Navbar";
+import Navbar from "../Component/Navbar";
 import {
   FaCloudUploadAlt,
   FaHeading,
@@ -21,7 +21,7 @@ function CreatePost() {
     title: "",
     description: "",
     auther: autherName?.name || "",
-    imageurl: "",
+    imageUrl: "",
     imageType: "url",
   });
 
@@ -42,13 +42,13 @@ function CreatePost() {
           title: post.title,
           description: post.description,
           auther: post.auther,
-          imageurl: post.imageurl,
-          imageType: post.imageurl?.startsWith("http")
+          imageUrl: post.imageUrl,
+          imageType: post.imageUrl?.startsWith("http")
             ? "url"
             : "file",
         });
 
-        setImagePreview(post.imageurl);
+        setImagePreview(post.imageUrl);
       });
   }
 }, [id]);
@@ -99,7 +99,7 @@ function CreatePost() {
   const handlefileTypeChange = (type) => {
     setData((prev) => ({ ...prev, imageType: type }));
     if (type === "url") {
-      setImagePreview(data.imageurl);
+      setImagePreview(data.imageUrl);
     } else {
       setImagePreview(null);
     }
@@ -114,7 +114,7 @@ function CreatePost() {
 
         setData((prev) => ({
           ...prev,
-          imageurl: reader.result,
+          imageUrl: reader.result,
         }));
       };
       reader.readAsDataURL(file);
@@ -124,7 +124,7 @@ function CreatePost() {
   const removeImage = () => {
     setImagePreview(null);
     if (data.imageType === "url") {
-      setData((prev) => ({ ...prev, imageurl: "" }));
+      setData((prev) => ({ ...prev, imageUrl: "" }));
     }
   };
 
@@ -232,10 +232,10 @@ function CreatePost() {
                       <FaLink className="input-icon" />
                       <input
                         type="url"
-                        name="imageurl"
+                        name="imageUrl"
                         className="form-control"
                         placeholder="Paste your url"
-                        value={data.imageurl}
+                        value={data.imageUrl}
                         onChange={(e) => {
                           handleChange(e);
                           setImagePreview(e.target.value);

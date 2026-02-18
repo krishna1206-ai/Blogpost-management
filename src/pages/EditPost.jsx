@@ -27,8 +27,6 @@ function EditPost() {
   const fileInputRef = useRef(null);
   const [imagePreview, setImagePreview] = useState(null);
   const [error, setError] = useState({});
-
-  // Fetch post for edit
   useEffect(() => {
     fetch(`http://localhost:3000/posts/${id}`)
       .then((res) => res.json())
@@ -155,7 +153,6 @@ function EditPost() {
 
         <div className="post-form-card">
           <form onSubmit={handleSubmit}>
-            {/* TITLE */}
             <div className="form-group">
               <label>Post Title</label>
               <div className="input-wrapper">
@@ -171,8 +168,6 @@ function EditPost() {
               </div>
               {error.title && <p className="error-text">{error.title}</p>}
             </div>
-
-            {/* AUTHOR */}
             <div className="form-group">
               <label>Author Name</label>
               <div className="input-wrapper">
@@ -188,8 +183,6 @@ function EditPost() {
               </div>
               {error.auther && <p className="error-text">{error.auther}</p>}
             </div>
-
-            {/* DESCRIPTION */}
             <div className="form-group">
               <label>Description</label>
               <textarea
@@ -203,8 +196,6 @@ function EditPost() {
                 <p className="error-text">{error.description}</p>
               )}
             </div>
-
-            {/* IMAGE */}
             <div className="form-group">
               <label>Cover Image</label>
 
@@ -267,7 +258,6 @@ function EditPost() {
               )}
             </div>
 
-            {/* BUTTONS */}
             <div className="form-actions-row">
               <button type="submit" className="submit-btn">
                 <FaRegPaperPlane /> Update Post

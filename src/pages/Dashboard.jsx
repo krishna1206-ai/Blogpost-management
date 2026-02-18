@@ -9,6 +9,9 @@ function Dashboard() {
   const [posts, setPosts] = useState([]);
   const navigate = useNavigate();
 
+  // ✅ Same storage key as CreatePost
+  const authData = JSON.parse(localStorage.getItem("blog_rdata"));
+
   const fetchData = async () => {
     try {
       const response = await fetch("http://localhost:3000/posts");
@@ -19,13 +22,37 @@ function Dashboard() {
     }
   };
 
+  // ✅ Only count YOUR posts
+  const yourStories = posts.filter(
+    (post) =>
+      post.auther?.trim().toLowerCase() ===
+      authData?.name?.trim().toLowerCase()
+  );
+
   useEffect(() => {
     fetchData();
   }, []);
 
+  // ✅ DELETE FUNCTION
+  const handleDelete = async (id) => {
+    if (!window.confirm("Are you sure you want to delete this post?")) return;
+
+    try {
+      await fetch(`http://localhost:3000/posts/${id}`, {
+        method: "DELETE",
+      });
+
+      // remove from UI
+      setPosts((prev) => prev.filter((post) => post.id !== id));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div className="dashboard-page">
       <Navbar />
+
       <main className="dashbord-main">
         <div className="dashboard-welcome">
           <div className="welcome-text">
@@ -44,12 +71,14 @@ function Dashboard() {
 
           <div className="dash-card">
             <h3>Your Stories</h3>
-            <span className="dash-number">{posts.length}</span>
+            <span className="dash-number">{yourStories.length}</span>
           </div>
 
           <div className="dash-card">
             <h3>Community Posts</h3>
-            <span className="dash-number">{posts.length}</span>
+            <span className="dash-number">
+              {posts.length - yourStories.length}
+            </span>
           </div>
         </div>
 
@@ -69,23 +98,24 @@ function Dashboard() {
               <div className="post-card" key={post.id}>
                 <div className="post-image-container">
                   <img
-                    src={post.imageUrl}
+                    src={post.imageUrl || "https://via.placeholder.com/300"}
                     alt={post.title}
                     className="post-card-image"
                   />
 
                   <div className="post-actions">
-                   <button
-  className="action-btn edit-btn"
-  title="Edit Post"
-  onClick={() => navigate(`/edit-post/${post.id}`)}
->
-  <MdEdit size={22} color="white" />
-</button>
+                    <button
+                      className="action-btn edit-btn"
+                      title="Edit Post"
+                      onClick={() => navigate(`/edit-post/${post.id}`)}
+                    >
+                      <MdEdit size={22} color="white" />
+                    </button>
 
                     <button
                       className="action-btn delete-btn"
                       title="Delete Post"
+                      onClick={() => handleDelete(post.id)}
                     >
                       <MdDelete size={22} color="white" />
                     </button>
@@ -94,9 +124,7 @@ function Dashboard() {
 
                 <div className="post-card-content">
                   <div className="post-meta">
-                    <span className="post-author">
-                      By {post.auther}
-                    </span>
+                    <span className="post-author">By {post.auther}</span>
                     <span className="post-date">
                       {new Date(post.createdAt).toDateString()}
                     </span>
@@ -108,7 +136,12 @@ function Dashboard() {
                     {post.description}
                   </p>
 
-                  <button className="read-more-btn"   onClick={() => navigate(`/post-detail/${post.id}`)}>Read More</button>
+                  <button
+                    className="read-more-btn"
+                    onClick={() => navigate(`/post-detail/${post.id}`)}
+                  >
+                    Read More
+                  </button>
                 </div>
               </div>
             ))}

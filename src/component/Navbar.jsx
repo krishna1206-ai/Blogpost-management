@@ -1,8 +1,17 @@
 import React from 'react'
 import "./Navbar.css";
-import { NavLink } from 'react-router-dom'
-import {FaBlog,FaHome,FaPlusSquare,FaSignOutAlt,FaChartLine } from 'react-icons/fa'
+import { NavLink, useNavigate } from 'react-router-dom'
+import {FaBlog,FaHome,FaPlusSquare,FaSignOutAlt,FaChartLine, FaMoon, FaSun } from 'react-icons/fa'
+import { useTheme } from '../context/ThemeContext';
 const Navbar = () => {
+    const navigate=useNavigate();
+    const {theme,toggleTheme}=useTheme();
+    const authData=JSON.parse(localStorage.getItem("authData"));
+    const handleLogout=()=>{
+        localStorage.removeItem("authData");
+        localStorage.removeItem("user");
+        navigate("/login");
+    };
   return (
     <nav className="navbar">
         <div className="navbar-container">
@@ -22,8 +31,11 @@ const Navbar = () => {
                 </NavLink>
             </div>
             <div className="navbar-action">
-                <span className="user-name">Hi,user</span>
-                <button className="logout-btn">
+                <span className="user-name">
+  Hi, {authData?.name || "User"}
+</span>
+                <button className="theme-toggle-btn" onClick={toggleTheme} aria-label='Toggle Theme'>{theme === 'light'?<FaMoon/>:<FaSun/>}</button>
+                <button className="logout-btn" onClick={handleLogout}>
                     <FaSignOutAlt/>Logout
                 </button>
             </div>
