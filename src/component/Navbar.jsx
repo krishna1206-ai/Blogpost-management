@@ -1,7 +1,7 @@
 import React from 'react'
 import "./Navbar.css";
 import { NavLink, useNavigate } from 'react-router-dom'
-import {FaBlog,FaHome,FaPlusSquare,FaSignOutAlt,FaChartLine, FaMoon, FaSun } from 'react-icons/fa'
+import {FaBlog,FaHome,FaPlusSquare,FaSignOutAlt,FaChartLine, FaMoon, FaSun, FaStar } from 'react-icons/fa'
 import { useTheme } from '../context/ThemeContext';
 const Navbar = () => {
     const navigate=useNavigate();
@@ -28,6 +28,9 @@ const Navbar = () => {
                 </NavLink>
                   <NavLink to='/analytics' className="nav-item">
                     <FaChartLine  className="nav-icon"/>Analysis
+                </NavLink>
+                 <NavLink to='/favourite' className="nav-item">
+                    <FaStar  className="nav-icon"/>Favourites
                 </NavLink>
             </div>
             <div className="navbar-action">

@@ -4,6 +4,7 @@ import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import CreatePost from "./pages/CreatePost";
   import EditPost from "./pages/EditPost";
+  import Favorites from "./pages/Favorites";
   import Analytics from "./pages/Analytics"; 
   import PostDetails from "./pages/PostDetails";
 import { ToastContainer } from "react-toastify";
@@ -20,6 +21,7 @@ function App() {
         <Route path="/create-post" element={<CreatePost />} />
         <Route path="/post-detail/:id" element={<PostDetails />} />
         <Route path="/analytics" element={<Analytics />} />
+       <Route path="/favourite" element={<Favorites />} />
       
 <Route path="/edit-post/:id" element={<EditPost />} />
 
